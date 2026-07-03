@@ -578,16 +578,14 @@ body {
 }
 
 @media (max-width:768px){
-
     .hero{
         min-height:100svh;
     }
 
     .hero::after{
-        background-position: 62% top;
-        background-size: cover;
+        background-size:180%;
+        background-position:58% 8%;
     }
-
 }
 
 /* ==========================================================================
