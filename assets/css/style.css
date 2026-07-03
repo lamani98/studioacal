@@ -194,6 +194,40 @@ body {
   }
 }
 
+.logo-wrapper{
+    position:relative;
+    width:min(420px,80vw);
+    overflow:hidden;
+}
+.logo{
+    width:100%;
+    display:block;
+    clip-path: inset(0 100% 0 0);
+    animation: reveal 2.8s ease forwards;
+}
+
+.pen{
+  position:absolute;
+  top:0;
+  left:0;
+  width:2px;
+  height:100%;
+  animation: penMove 2.8s ease forwards;
+}
+@keyframes reveal{
+  to{
+      clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes penMove{
+  0%{transform:translateX(0) rotate(-5deg);}
+  20%{transform:translateX(80px) rotate(4deg);}
+  40%{transform:translateX(170px) rotate(-3deg);}
+  60%{transform:translateX(260px) rotate(2deg);}
+  80%{transform:translateX(340px) rotate(-2deg);}
+  100%{transform:translateX(420px) rotate(0);}
+}
+
 /* ==========================================================================
    HEADER + MENU FULLSCREEN (technique: checkbox hack, sem JS)
    ========================================================================== */
@@ -482,7 +516,9 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(20, 19, 15, 0.35), transparent 55%);
+  background-image: url("../img/capa2.png");
+
+  /* background: linear-gradient(to top, rgba(20, 19, 15, 0.35), transparent 55%); */
 }
 
 .hero__content {

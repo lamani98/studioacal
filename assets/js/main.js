@@ -115,3 +115,11 @@
 //     });
 //   }
 })();
+
+
+setTimeout(()=>{
+  const loader=document.querySelector('.loader');
+  loader.style.transition='opacity .8s ease';
+  loader.style.opacity='0';
+  setTimeout(()=>loader.remove(),800);
+},3300);
