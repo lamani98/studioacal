@@ -52,66 +52,66 @@
      3) Cursor customizado — imagem que segue o mouse e troca ao clicar
         Só em dispositivos com mouse de verdade (pointer: fine).
      ------------------------------------------------------------ */
-  var supportsFinePointer = window.matchMedia('(pointer: fine)').matches;
+//   var supportsFinePointer = window.matchMedia('(pointer: fine)').matches;
 
-  if (supportsFinePointer && !prefersReducedMotion) {
-    document.documentElement.classList.add('has-custom-cursor');
+//   if (supportsFinePointer && !prefersReducedMotion) {
+//     document.documentElement.classList.add('has-custom-cursor');
 
-    var cursor = document.createElement('div');
-    cursor.className = 'custom-cursor custom-cursor--hidden';
-    cursor.setAttribute('aria-hidden', 'true');
+//     var cursor = document.createElement('div');
+//     cursor.className = 'custom-cursor custom-cursor--hidden';
+//     cursor.setAttribute('aria-hidden', 'true');
 
-    var cursorImg = document.createElement('img');
-    cursorImg.src = 'assets/img/cursor2.png';
-    cursorImg.alt = '';
-    cursor.appendChild(cursorImg);
-    document.body.appendChild(cursor);
+//     var cursorImg = document.createElement('img');
+//     cursorImg.src = 'assets/img/cursor2.png';
+//     cursorImg.alt = '';
+//     cursor.appendChild(cursorImg);
+//     document.body.appendChild(cursor);
 
-    var mouseX = window.innerWidth / 2;
-    var mouseY = window.innerHeight / 2;
-    var cursorX = mouseX;
-    var cursorY = mouseY;
-    var EASE = 0.2;
+//     var mouseX = window.innerWidth / 2;
+//     var mouseY = window.innerHeight / 2;
+//     var cursorX = mouseX;
+//     var cursorY = mouseY;
+//     var EASE = 0.2;
 
-    function renderCursor() {
-      cursorX += (mouseX - cursorX) * EASE;
-      cursorY += (mouseY - cursorY) * EASE;
-      cursor.style.transform = 'translate(' + cursorX + 'px, ' + cursorY + 'px) translate(-50%, -50%)';
-      requestAnimationFrame(renderCursor);
-    }
-    requestAnimationFrame(renderCursor);
+//     function renderCursor() {
+//       cursorX += (mouseX - cursorX) * EASE;
+//       cursorY += (mouseY - cursorY) * EASE;
+//       cursor.style.transform = 'translate(' + cursorX + 'px, ' + cursorY + 'px) translate(-50%, -50%)';
+//       requestAnimationFrame(renderCursor);
+//     }
+//     requestAnimationFrame(renderCursor);
 
-    window.addEventListener('mousemove', function (e) {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.classList.remove('custom-cursor--hidden');
-    });
+//     window.addEventListener('mousemove', function (e) {
+//       mouseX = e.clientX;
+//       mouseY = e.clientY;
+//       cursor.classList.remove('custom-cursor--hidden');
+//     });
 
-    document.addEventListener('mouseleave', function () {
-      cursor.classList.add('custom-cursor--hidden');
-    });
+//     document.addEventListener('mouseleave', function () {
+//       cursor.classList.add('custom-cursor--hidden');
+//     });
 
-    window.addEventListener('mousedown', function () {
-      cursor.classList.add('custom-cursor--click');
-      cursorImg.src = 'assets/img/cursor2.png';
-    });
+//     window.addEventListener('mousedown', function () {
+//       cursor.classList.add('custom-cursor--click');
+//       cursorImg.src = 'assets/img/cursor2.png';
+//     });
 
-    window.addEventListener('mouseup', function () {
-      cursor.classList.remove('custom-cursor--click');
-      cursorImg.src = 'assets/img/cursor2.png';
-    });
+//     window.addEventListener('mouseup', function () {
+//       cursor.classList.remove('custom-cursor--click');
+//       cursorImg.src = 'assets/img/cursor2.png';
+//     });
 
-    // Cresce um pouco sobre links, botões e imagens clicáveis.
-    var hoverSelector = 'a, button, label, .media-link';
-    document.addEventListener('mouseover', function (e) {
-      if (e.target.closest(hoverSelector)) {
-        cursor.classList.add('custom-cursor--hover');
-      }
-    });
-    document.addEventListener('mouseout', function (e) {
-      if (e.target.closest(hoverSelector)) {
-        cursor.classList.remove('custom-cursor--hover');
-      }
-    });
-  }
+//     // Cresce um pouco sobre links, botões e imagens clicáveis.
+//     var hoverSelector = 'a, button, label, .media-link';
+//     document.addEventListener('mouseover', function (e) {
+//       if (e.target.closest(hoverSelector)) {
+//         cursor.classList.add('custom-cursor--hover');
+//       }
+//     });
+//     document.addEventListener('mouseout', function (e) {
+//       if (e.target.closest(hoverSelector)) {
+//         cursor.classList.remove('custom-cursor--hover');
+//       }
+//     });
+//   }
 })();
