@@ -1,0 +1,760 @@
+/* ==========================================================================
+   STUDIO ACAL — Folha de estilos única (HTML + CSS puro, sem JavaScript)
+   ========================================================================== */
+
+/* ---- Reset básico ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ---- Tokens de marca ---- */
+:root {
+  --paper: #fbfaf7;
+  --ink: #14130f;
+  --stone: #8c8678;
+  --line: #dedad0;
+  --mist: #f1efe9;
+  --oxide: #7a3621;
+
+  --font-display: "Fraunces", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "Space Grotesk", monospace;
+
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --gap: clamp(16px, 2.5vw, 32px);
+  --side: clamp(20px, 5vw, 64px);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---- Tipografia editorial ---- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.04;
+}
+
+.heading--xxl {
+  font-size: clamp(2.6rem, 9vw, 5.5rem);
+}
+
+.heading--xl {
+  font-size: clamp(2.2rem, 6.5vw, 4.2rem);
+}
+
+.heading--lg {
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+}
+
+.heading--md {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.text-body {
+  max-width: 38rem;
+  color: rgba(20, 19, 15, 0.75);
+}
+
+/* ---- Layout ---- */
+.container {
+  padding-left: var(--side);
+  padding-right: var(--side);
+}
+
+.section {
+  padding-top: clamp(64px, 12vw, 160px);
+  padding-bottom: clamp(64px, 12vw, 160px);
+}
+
+.section--tight {
+  padding-top: clamp(40px, 6vw, 96px);
+  padding-bottom: clamp(40px, 6vw, 96px);
+}
+
+.section--border {
+  border-top: 1px solid var(--line);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap);
+}
+
+.grid-12 {
+  grid-template-columns: repeat(12, 1fr);
+}
+
+@media (max-width: 860px) {
+  .grid-12 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   LOADER — tela branca com o logotipo desenhando-se sozinho (CSS puro)
+   ========================================================================== */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper);
+  animation: loader-fade 0.9s var(--ease-editorial) forwards;
+  animation-delay: 2.4s;
+}
+
+.loader svg path {
+  fill: var(--ink);
+  fill-opacity: 0;
+  stroke: var(--ink);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 760;
+  stroke-dashoffset: 760;
+  animation: loader-draw 1.6s var(--ease-editorial) forwards,
+    loader-fill 0.4s ease forwards;
+  animation-delay: 0.3s, 1.7s;
+}
+
+@keyframes loader-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes loader-fill {
+  to {
+    fill-opacity: 1;
+  }
+}
+
+@keyframes loader-fade {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   HEADER + MENU FULLSCREEN (technique: checkbox hack, sem JS)
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--side);
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  height: 160%;
+  background: linear-gradient(to bottom, rgba(251, 250, 247, 0.55), rgba(251, 250, 247, 0));
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.menu-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-trigger,
+.menu-close {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--ink);
+}
+
+.menu-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--side);
+  background: var(--paper);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.7s var(--ease-editorial);
+}
+
+.menu-toggle:checked ~ .menu-panel {
+  clip-path: inset(0 0 0% 0);
+}
+
+.menu-panel__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.menu-links a {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 11vw, 6rem);
+  line-height: 0.95;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease-editorial), transform 0.6s var(--ease-editorial),
+    color 0.3s ease;
+}
+
+.menu-toggle:checked ~ .menu-panel .menu-links a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menu-links a:nth-child(1) { transition-delay: 0.15s; }
+.menu-links a:nth-child(2) { transition-delay: 0.21s; }
+.menu-links a:nth-child(3) { transition-delay: 0.27s; }
+.menu-links a:nth-child(4) { transition-delay: 0.33s; }
+
+.menu-links a:hover {
+  color: var(--stone);
+}
+
+.menu-panel__bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--stone);
+}
+
+/* ==========================================================================
+   HOVER / "CURSOR" — substitui o cursor customizado (que exigiria JS)
+   ========================================================================== */
+.hoverable {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hoverable .hoverable__hint {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--stone);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.3s var(--ease-editorial), transform 0.3s var(--ease-editorial);
+}
+
+.hoverable:hover .hoverable__hint {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.media-link {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.media-link::after {
+  content: "Explorar";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.85);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--paper);
+  padding: 0.9em 1.4em;
+  border: 1px solid color-mix(in srgb, var(--paper) 70%, transparent);
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-editorial), transform 0.4s var(--ease-editorial);
+  pointer-events: none;
+}
+
+.media-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 19, 15, 0);
+  transition: background 0.4s var(--ease-editorial);
+}
+
+.media-link:hover::before {
+  background: rgba(20, 19, 15, 0.18);
+}
+
+.media-link:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.media-link img,
+.media-link .tone {
+  transition: transform 0.7s var(--ease-editorial);
+}
+
+.media-link:hover img,
+.media-link:hover .tone {
+  transform: scale(1.04);
+}
+
+/* ==========================================================================
+   PLACEHOLDER — textura no lugar de fotografia real
+   ========================================================================== */
+.tone {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.tone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.05) 0px,
+    rgba(0, 0, 0, 0) 1px,
+    rgba(0, 0, 0, 0) 3px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.4;
+}
+
+.tone__label {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(20, 19, 15, 0.5);
+}
+
+.ratio-16-10 { aspect-ratio: 16 / 10; }
+.ratio-16-9 { aspect-ratio: 16 / 9; }
+.ratio-4-5 { aspect-ratio: 4 / 5; }
+.ratio-3-4 { aspect-ratio: 3 / 4; }
+.ratio-1-1 { aspect-ratio: 1 / 1; }
+
+.tone--a { background: linear-gradient(155deg, #e7e2d6, #a89c86); }
+.tone--b { background: linear-gradient(155deg, #d8cdbe, #7a3621); }
+.tone--c { background: linear-gradient(155deg, #efeae0, #8c8678); }
+.tone--d { background: linear-gradient(155deg, #e3e6da, #5b6354); }
+.tone--e { background: linear-gradient(155deg, #e9e4d8, #857e6c); }
+.tone--f { background: linear-gradient(155deg, #dcd6c7, #6f6855); }
+
+/* ==========================================================================
+   REVEAL NO SCROLL — CSS puro via scroll-driven animations
+   (progressive enhancement: conteúdo visível por padrão; em navegadores
+   compatíveis, ganha a entrada suave ligada à posição de scroll)
+   ========================================================================== */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    opacity: 0;
+    animation: reveal-up 1s var(--ease-editorial) both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 28%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.hero .tone {
+  position: absolute;
+  inset: 0;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20, 19, 15, 0.35), transparent 55%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  padding: var(--side);
+  padding-bottom: clamp(48px, 8vw, 96px);
+  color: var(--paper);
+}
+
+.hero__content .eyebrow {
+  color: rgba(251, 250, 247, 0.8);
+}
+
+.hero__scroll {
+  position: absolute;
+  z-index: 2;
+  right: var(--side);
+  bottom: clamp(32px, 6vw, 64px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(251, 250, 247, 0.75);
+}
+
+.hero__scroll span {
+  writing-mode: vertical-lr;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 2.5rem;
+  background: rgba(251, 250, 247, 0.5);
+  transform-origin: top;
+  animation: scroll-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes scroll-pulse {
+  0% { transform: scaleY(0); }
+  50% { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
+}
+
+/* ==========================================================================
+   MANIFESTO
+   ========================================================================== */
+.manifesto {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--side);
+}
+
+.manifesto p {
+  max-width: 46rem;
+  font-size: clamp(1.8rem, 6vw, 3.2rem);
+}
+
+/* ==========================================================================
+   PROJETOS
+   ========================================================================== */
+.project-block__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: clamp(32px, 5vw, 64px);
+}
+
+.project-block__title {
+  margin-top: 0.75rem;
+}
+
+.link-line {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(20, 19, 15, 0.4);
+  padding-bottom: 0.3rem;
+  transition: opacity 0.3s ease;
+}
+
+.link-line:hover {
+  opacity: 0.6;
+}
+
+.project-block__media {
+  grid-column: span 8;
+}
+
+.project-block__side {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+@media (max-width: 860px) {
+  .project-block__media,
+  .project-block__side {
+    grid-column: 1 / -1;
+  }
+}
+
+.project-block__side p {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  line-height: 1.3;
+  color: rgba(20, 19, 15, 0.8);
+}
+
+/* ==========================================================================
+   CONTATO
+   ========================================================================== */
+.contact {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  text-align: center;
+  padding: var(--side);
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+/* ==========================================================================
+   PÁGINA DE PROJETO
+   ========================================================================== */
+.project-hero {
+  position: relative;
+  height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.project-hero .tone {
+  position: absolute;
+  inset: 0;
+}
+
+.project-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(20, 19, 15, 0.45), transparent 55%);
+}
+
+.project-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: var(--side);
+  padding-bottom: clamp(48px, 8vw, 96px);
+  color: var(--paper);
+}
+
+.project-hero__content .eyebrow {
+  color: rgba(251, 250, 247, 0.8);
+}
+
+.materials-list li {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3.2vw, 2rem);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.next-project {
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+
+.next-project a {
+  display: block;
+  margin-top: 1.5rem;
+  font-size: clamp(2.4rem, 11vw, 5.5rem);
+  transition: opacity 0.3s ease;
+}
+
+.next-project a:hover {
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   PROCESSO
+   ========================================================================== */
+.process-step {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gap);
+  padding: clamp(40px, 6vw, 96px) 0;
+  border-top: 1px solid var(--line);
+}
+
+.process-step__index {
+  grid-column: span 2;
+  font-family: var(--font-mono);
+  color: var(--stone);
+}
+
+.process-step__copy {
+  grid-column: span 4;
+}
+
+.process-step__copy p {
+  margin-top: 1rem;
+  max-width: 24rem;
+  color: rgba(20, 19, 15, 0.75);
+}
+
+.process-step__media {
+  grid-column: span 6;
+}
+
+@media (max-width: 860px) {
+  .process-step__index,
+  .process-step__copy,
+  .process-step__media {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ==========================================================================
+   STUDIO
+   ========================================================================== */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap) 1rem;
+}
+
+@media (max-width: 860px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.team-card p:first-of-type {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  margin-top: 1rem;
+}
+
+.team-card p:last-of-type {
+  margin-top: 0.25rem;
+}
+
+/* ==========================================================================
+   404
+   ========================================================================== */
+.not-found {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  text-align: center;
+}
