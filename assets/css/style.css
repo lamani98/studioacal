@@ -517,8 +517,6 @@ body {
   position: absolute;
   inset: 0;
   background-image: url("../img/capa2.png");
-
-  /* background: linear-gradient(to top, rgba(20, 19, 15, 0.35), transparent 55%); */
 }
 
 .hero__content {
@@ -587,6 +585,10 @@ body {
 /* ==========================================================================
    PROJETOS
    ========================================================================== */
+.banner_project1 {
+  background-image: url("../img/capa2.png") !important;
+}
+
 .project-block__head {
   display: flex;
   flex-wrap: wrap;
