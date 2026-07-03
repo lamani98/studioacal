@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Studio — Composições Editoriais</title>
+  <meta name="description" content="Um painel visual editorial: fotografias que se sobrepõem em uma composição contemplativa, inspirada na linguagem gráfica do design europeu contemporâneo.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Studio — Composições Editoriais">
+  <meta property="og:description" content="Um painel visual editorial construído com fotografia, ritmo e silêncio visual.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ================= MENU ================= -->
+  <header class="site-menu" aria-label="Navegação principal">
+    <nav>
+      <ul class="site-menu__list">
+        <li><a href="#" class="site-menu__link" data-target="home">Home</a></li>
+        <li><a href="#" class="site-menu__link" data-target="projects">Projects</a></li>
+        <li><a href="#" class="site-menu__link" data-target="studio">Studio</a></li>
+        <li><a href="#" class="site-menu__link" data-target="about">About</a></li>
+        <li><a href="#" class="site-menu__link" data-target="contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ================= COMPOSIÇÃO PRINCIPAL ================= -->
+  <main class="stage" id="stage" aria-label="Composição fotográfica editorial">
+
+    <!-- Logotipo de fundo, quase imóvel -->
+    <svg class="stage__logo" viewBox="0 0 1000 190" role="img" aria-label="Studio">
+      <text x="50%" y="80%" text-anchor="middle" class="stage__logo-text">ACAL</text>
+    </svg>
+
+    <!-- As fotografias são injetadas aqui via JavaScript -->
+    <div class="stage__canvas" id="canvas"></div>
+
+  </main>
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer class="site-footer">
+    <p>&copy; 2026 Studio — Composições Editoriais. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
