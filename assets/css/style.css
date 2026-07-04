@@ -566,14 +566,15 @@ body {
 }
 
 @media (max-width: 1024px){
-    .hero{
-      min-height:100svh;
-    }
+  .hero{
+    min-height:100dvh;
+  }
 
-    .hero::after{
-      background-position: 65% center;
-    }
-
+  .hero::after{
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:66% 8%;
+  }
 }
 
 @media (max-width:768px){
