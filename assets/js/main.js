@@ -728,3 +728,30 @@
   // Exposto apenas para depuração manual em ambiente de desenvolvimento.
   window.__studioAcal = { destroy, state };
 })();
+
+const videos = document.querySelectorAll("video");
+
+const observer = new IntersectionObserver((entries)=>{
+
+    entries.forEach(entry=>{
+
+        const video = entry.target;
+
+        if(entry.isIntersecting){
+
+            video.currentTime = 0;
+            video.play();
+
+        }else{
+
+            video.pause();
+
+        }
+
+    });
+
+},{
+    threshold:.5
+});
+
+videos.forEach(video=>observer.observe(video));
