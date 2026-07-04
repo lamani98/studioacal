@@ -603,35 +603,62 @@ body {
 /* ==========================================================================
    PROJETOS
    ========================================================================== */
-.banner1_project1{
+
+.banner_default_style{
   width:100%;
   height:100%;
-  background-image: url("../img/yellow-k/externo.png") !important;
   background-size:cover;
   background-position:center center;
   background-repeat:no-repeat;
   transition:transform .8s ease;
+}
+
+.banner1_project1{
+  background-image: url("../img/yellow-k/externo.png") !important;
 }
 
 .banner2_project1{
-  width:100%;
-  height:100%;
   background-image: url("../img/yellow-k/bar.jpg") !important;
-  background-size:cover;
-  background-position:center center;
-  background-repeat:no-repeat;
-  transition:transform .8s ease;
 }
 
 .banner3_Project1{
+  background-image: url("../img/yellow-k/materias.png") !important;
+}
+
+.banner1_Project2{
+  background-image: url("../img/academia/mg-smartfit-pocos-de-caldas/smartfit-pos-obra-fachada3.jpeg") !important;
+}
+
+.banner2_Project2{
+  background-image: url("../img/academia/mg-smartfit-pocos-de-caldas/smartfit-pos-obra-salao2.jpeg") !important;
+}
+
+.banner1_Project3{
+  background-image: url("../img/academia/mg-smartfit-pocos-de-caldas/smartfit-pos-obra-salao2.jpeg") !important;
+}
+
+.banner2_Project3{
+  background-image: url("../img/academia/mg-smartfit-pocos-de-caldas/smartfit-pos-obra-salao2.jpeg") !important;
+}
+
+.banner1_Project4{
+  background-image: url("../img/studio-mina/tv.png") !important;
+}
+
+.banner2_Project4{
+  background-image: url("../img/studio-mina/cama.png") !important;
+}
+
+.hero__video{
+  position:absolute;
+  inset:0;
   width:100%;
   height:100%;
-  background-image: url("../img/yellow-k/materias.png") !important;
-  background-size:cover;
-  background-position:center center;
-  background-repeat:no-repeat;
-  transition:transform .8s ease;
+  object-fit:cover;
+  object-position:center;
+  z-index:-2;
 }
+
 
 .media-link{
   overflow:hidden;
