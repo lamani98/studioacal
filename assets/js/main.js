@@ -910,6 +910,7 @@
     setupDepthLayers();
     setupSectionTransitions();
     setupNavigation();
+    setupScrollSignature();
     setupScrollEffects();
     setupCursorGlow();
     setupCards();
