@@ -36,7 +36,7 @@
 
     // motor de scroll suave (inércia estilo trackpad premium)
     WHEEL_MULTIPLIER: 1,
-    SCROLL_DAMPING: 0.20,          // 0-1, menor = mais "flutuante"
+    SCROLL_DAMPING: 0.22,          // 0-1, menor = mais "flutuante"
     SCROLL_SETTLE_EPSILON: 0.4,
 
     // parallax / profundidade
@@ -314,7 +314,12 @@
   })();
 
   function setupSmoothScroll() {
-    if (state.reducedMotion || media.coarsePointer.matches) return;
+    if (state.reducedMotion) return;
+
+    // Mantém o scroll nativo no desktop
+    if (window.innerWidth > 1024) return;
+
+    // Ativa o scroll customizado apenas em tablets e celulares
     SmoothScroll.init();
   }
 
