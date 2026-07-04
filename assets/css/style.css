@@ -649,31 +649,6 @@ body {
   background-image: url("../img/studio-mina/cama.png") !important;
 }
 
-.hero__video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-  z-index:-2;
-}
-
-.banner_default_style video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  background:#000;
-}
-
-.project-video{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
 .media-link{
   overflow:hidden;
 }  
