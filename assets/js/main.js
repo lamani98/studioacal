@@ -36,7 +36,7 @@
 
     // motor de scroll suave (inércia estilo trackpad premium)
     WHEEL_MULTIPLIER: 1,
-    SCROLL_DAMPING: 0.11,          // 0-1, menor = mais "flutuante"
+    SCROLL_DAMPING: 0.20,          // 0-1, menor = mais "flutuante"
     SCROLL_SETTLE_EPSILON: 0.4,
 
     // parallax / profundidade
