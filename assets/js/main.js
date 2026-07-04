@@ -320,7 +320,7 @@
     if (window.innerWidth > 1024) return;
 
     // Ativa o scroll customizado apenas em tablets e celulares
-    SmoothScroll.init();
+    SmoothScroll.init();  
   }
 
   /* ------------------------------------------------------------------------
