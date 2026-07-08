@@ -1,0 +1,7 @@
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../../img/yellow-k/externo.png");
+  background-position: 0% 60%;
+}
