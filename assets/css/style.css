@@ -766,7 +766,19 @@ body {
   content: "";
   position: absolute;
   inset: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: moveBackground 15s ease-in-out infinite alternate;
   background-image: url("../img/banner_contato.png") !important;
+}
+
+@keyframes moveBackground {
+  from {
+    background-position: 0% 30%;
+  }
+  to {
+    background-position: 100% 30%;
+  }
 }
 
 .hero_contato__content {
@@ -775,6 +787,23 @@ body {
   padding: var(--side);
   padding-bottom: clamp(48px, 8vw, 96px);
   color: var(--paper);
+}
+
+@media (max-width: 1024px){
+  .hero_contato{
+    min-height:100dvh;
+  }
+
+  .hero_contato::after{
+    background-repeat: no-repeat;
+    background-size: 420%;
+  }
+}
+
+@media (max-width:768px){
+    .hero_contato::after{
+      background-size: 440%;
+    }
 }
 
 /* ==========================================================================
