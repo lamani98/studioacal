@@ -3,5 +3,45 @@
   position: absolute;
   inset: 0;
   background-image: url("../../img/yellow-k/externo.png");
-  background-position: 0% 60%;
+  background-position: 0% 30% !important;
+}
+
+.banner1{
+  background-image: url("../../img/yellow-k/IMG_4090.png") !important;
+}
+
+.banner2{
+  background-image: url("../../img/yellow-k/IMG_0959.jpg") !important;
+}
+
+.banner3{
+  background-image: url("../../img/yellow-k/bar.jpg") !important;
+}
+
+.banner4{
+  background-image: url("../../img/yellow-k/bar.jpg") !important;
+}
+
+.banner5{
+  background-image: url("../../img/yellow-k/bar.jpg") !important;
+}
+
+.banner6{
+  background-image: url("../../img/yellow-k/bar.jpg") !important;
+}
+
+@media (max-width: 768px) {
+  .hero::after {
+    background-size: 480% !important;
+    background-position: 58% 0% !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero::after {
+    background-repeat: no-repeat;
+    background-size: cover ; 
+    background-position: 40% 8% !important;
+    background-size: 200% !important;
+  }
 }
