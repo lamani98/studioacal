@@ -19,21 +19,40 @@
 }
 
 .banner4{
-  background-image: url("../../img/yellow-k/bar.jpg") !important;
 }
 
-.banner5{
-  background-image: url("../../img/yellow-k/bar.jpg") !important;
+.banner4 {
+  position: relative;
+  height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background-image: url("../../img/yellow-k/render.png") !important;
+  animation: moveBackground 15s ease-in-out infinite alternate;
 }
 
-.banner6{
-  background-image: url("../../img/yellow-k/bar.jpg") !important;
+.banner4 .tone {
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes moveBackground {
+  from {
+    background-position: 0% 30%;
+  }
+  to {
+    background-position: 100% 30%;
+  }
 }
 
 @media (max-width: 768px) {
   .hero::after {
     background-size: 480% !important;
     background-position: 58% 0% !important;
+  }
+
+  .banner4::after{
+    background-size: 440%;
   }
 }
 
@@ -43,5 +62,14 @@
     background-size: cover ; 
     background-position: 40% 8% !important;
     background-size: 200% !important;
+  }
+
+  .banner4{
+    min-height:100dvh;
+  }
+
+  .banner4::after{
+    background-repeat: no-repeat;
+    background-size: 420%;
   }
 }
